@@ -27,15 +27,15 @@ public class Model{
     }
 
     public void turnOnLight(String color, String state) {
-         apiInterface.turnOnLight(color, state);
+        apiInterface.turnOnLight(color, state).compose(applySchedulers());
     }
 
     public void player(String state) {
-        apiInterface.player(state);
+        apiInterface.player(state).compose(applySchedulers());
     }
 
     public void sendText(String text){
-        apiInterface.sendText(text);
+        apiInterface.sendText(text).compose(applySchedulers());
     }
 
     @SuppressWarnings("unchecked")
