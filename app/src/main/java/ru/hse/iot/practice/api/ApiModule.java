@@ -37,7 +37,7 @@ public class ApiModule {
 
 
         Retrofit.Builder builder = new Retrofit.Builder().
-                baseUrl("http://ec2-184-72-92-114.compute-1.amazonaws.com:8080")
+                baseUrl("http://192.168.43.27:5000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create());
         if (ENABLE_AUTH) builder.client(httpClient);

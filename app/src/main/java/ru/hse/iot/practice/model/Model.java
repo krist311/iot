@@ -26,16 +26,20 @@ public class Model{
         ;
     }
 
-    public void turnOnLight(String color, String state) {
-        apiInterface.turnOnLight(color, state).compose(applySchedulers());
+    public Observable<Lamp> turnOnLight(String color, String state) {
+        return apiInterface.turnOnLight(color, state).compose(applySchedulers());
     }
 
     public void player(String state) {
         apiInterface.player(state).compose(applySchedulers());
     }
 
-    public void sendText(String text){
-        apiInterface.sendText(text).compose(applySchedulers());
+    public Observable<Lamp> sendText(String text){
+        return apiInterface.sendText(text).compose(applySchedulers());
+    }
+
+    public Observable<String> getTemp(){
+        return apiInterface.getTemp().compose(applySchedulers());
     }
 
     @SuppressWarnings("unchecked")

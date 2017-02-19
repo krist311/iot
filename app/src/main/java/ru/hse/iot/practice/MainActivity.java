@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import ru.hse.iot.practice.model.Model;
+import ru.hse.iot.practice.presenter.Presenter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,14 +20,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Model model = new Model();
+        Presenter presenter = new Presenter(this);
         ToggleButton red = (ToggleButton) findViewById(R.id.red);
         red.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
-                    model.turnOnLight("red","1");
+                    presenter.turnOnLight("red","on");
                 } else {
-                    model.turnOnLight("red","0");
+                    presenter.turnOnLight("red","off");
                 }
             }
         });
@@ -35,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
-                    model.turnOnLight("green","1");
+                    presenter.turnOnLight("green","on");
                 } else {
-                    model.turnOnLight("green","0");
+                    presenter.turnOnLight("green","off");
                 }
             }
         });
@@ -46,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
-                    model.turnOnLight("blue","1");
+                    presenter.turnOnLight("blue","on");
                 } else {
-                    model.turnOnLight("blue","0");
+                    presenter.turnOnLight("blue","off");
                 }
             }
         });
@@ -73,10 +75,17 @@ public class MainActivity extends AppCompatActivity {
         ((Button)findViewById(R.id.send)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                model.sendText(((EditText)findViewById(R.id.editText)).getText().toString());
+                presenter.sendText(((EditText)findViewById(R.id.editText)).getText().toString());
             }
         });
-
+        TextView tempTextView = (TextView)findViewById(R.id.tempTextView);
+        Button getTempButton = (Button) findViewById(R.id.getTempButton);
+        getTempButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.getTemp();
+            }
+        });
     }
 
     private void play(){
@@ -87,5 +96,10 @@ public class MainActivity extends AppCompatActivity {
     }
     private void pause(){
 
+    }
+
+    public void showTemp(String temp) {
+        TextView tempTextView = (TextView)findViewById(R.id.tempTextView);
+        tempTextView.setText(temp);
     }
 }

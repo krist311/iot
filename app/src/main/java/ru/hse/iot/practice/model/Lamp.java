@@ -5,5 +5,9 @@ package ru.hse.iot.practice.model;
  */
 
 public class Lamp {
+    private String a;
+    public String getA(){
+        return a;
+    }
 
 }

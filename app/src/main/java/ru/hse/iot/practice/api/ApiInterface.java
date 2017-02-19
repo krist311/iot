@@ -16,9 +16,12 @@ import rx.Observable;
 public interface ApiInterface {
 
     @GET("light/{color}/{state}")
-    Observable<Lamp> turnOnLight(@Path("color") String color, @Path("color") String state);
+    //Observable<Lamp> turnOnLight( String color,  String state);
+    Observable<Lamp> turnOnLight(@Path("color") String color, @Path("state") String state);
     @GET("player/{state}")
     Observable<Lamp> player(@Path("state") String command);
-    @POST("print")
-    Observable<Lamp> sendText(@Body String text);
+    @GET("lcd/{text}")
+    Observable<Lamp> sendText(@Path("text") String text);
+    @GET("gettemp")
+    Observable<String> getTemp();
 }
