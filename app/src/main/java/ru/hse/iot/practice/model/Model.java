@@ -30,7 +30,7 @@ public class Model{
         return apiInterface.turnOnLight(color, state).compose(applySchedulers());
     }
 
-    public void player(String state) {
+    public Observable<Lamp> player(String state) {
         apiInterface.player(state).compose(applySchedulers());
     }
 

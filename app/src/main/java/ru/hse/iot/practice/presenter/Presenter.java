@@ -92,4 +92,26 @@ public class Presenter {
                 });
         addSubscription(userInfoSubscription);
     }
+
+    public void player(String text) {
+
+        Subscription userInfoSubscription = model.player(text)
+                .subscribe(new Observer<Lamp>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //view.showError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(Lamp lamp) {
+                        Log.d("my app", "On next");
+                    }
+                });
+        addSubscription(userInfoSubscription);
+    }
 }
